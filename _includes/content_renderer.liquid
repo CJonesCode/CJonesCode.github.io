@@ -1,0 +1,116 @@
+<!-- Content Renderer - Transforms content_items data into project HTML -->
+{% comment %}
+  This include renders content items matching the current project structure
+  Usage: {% include content_renderer.liquid %}
+  
+  Enhanced to support video sources in focus.src:
+  - YouTube: youtube.com/watch?v= or youtu.be/ or youtube.com/embed/
+  - Vimeo: vimeo.com/
+  - Loom: loom.com/share/
+  - Direct video files: .mp4, .webm, .mov, .avi
+  - Images: all other sources treated as images
+{% endcomment %}
+
+{% for item in site.data.content_items %}
+<!-- Project {{ forloop.index }} -->
+<div class="project" id="project-{{ item.id }}" data-tags="{{ item.body.technologies | join: '|' | downcase }}">
+  <div class="container">
+    <div class="project-content">
+      <div class="project-info">
+        <h3>{{ item.body.title }}</h3>
+        <p>{{ item.body.description }}</p>
+        <div class="project-tech">
+          {% for tech in item.body.technologies %}
+          <span class="tech-tag">{{ tech }}</span>
+          {% endfor %}
+        </div>
+        <div class="project-links">
+          {% assign has_valid_demo = false %}
+          {% if item.body.links.demo and item.body.links.demo != "" and item.body.links.demo != "#" %}
+            {% assign has_valid_demo = true %}
+          {% endif %}
+          
+          {% if has_valid_demo %}
+            <a href="{{ item.body.links.demo }}" class="btn-demo">Demo</a>
+          {% else %}
+            <span class="btn-demo disabled">Demo</span>
+          {% endif %}
+          <a href="{{ item.body.links.github }}" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="project-visual">
+        {% assign focus_src = item.focus.src %}
+        {% assign is_video = false %}
+        
+        <!-- Check if source is a video -->
+        {% if focus_src contains 'youtube.com' or focus_src contains 'youtu.be' %}
+          {% assign is_video = true %}
+          {% assign video_type = 'youtube' %}
+        {% elsif focus_src contains 'vimeo.com' %}
+          {% assign is_video = true %}
+          {% assign video_type = 'vimeo' %}
+        {% elsif focus_src contains 'loom.com' %}
+          {% assign is_video = true %}
+          {% assign video_type = 'loom' %}
+        {% elsif focus_src contains '.mp4' or focus_src contains '.webm' or focus_src contains '.mov' or focus_src contains '.avi' %}
+          {% assign is_video = true %}
+          {% assign video_type = 'direct' %}
+        {% endif %}
+        
+        {% if is_video %}
+          <!-- Render video embed -->
+          <div class="project-video">
+            {% if video_type == 'youtube' %}
+              {% comment %} Extract YouTube video ID and create embed {% endcomment %}
+              {% assign video_id = '' %}
+              {% if focus_src contains 'watch?v=' %}
+                {% assign video_id = focus_src | split: 'watch?v=' | last | split: '&' | first %}
+              {% elsif focus_src contains 'youtu.be/' %}
+                {% assign video_id = focus_src | split: 'youtu.be/' | last | split: '?' | first %}
+              {% elsif focus_src contains 'embed/' %}
+                {% assign video_id = focus_src | split: 'embed/' | last | split: '?' | first %}
+              {% endif %}
+              <iframe src="https://www.youtube.com/embed/{{ video_id }}" 
+                      frameborder="0" allowfullscreen
+                      title="{{ item.focus.alt | default: item.body.title }}"></iframe>
+              
+            {% elsif video_type == 'vimeo' %}
+              {% assign video_id = focus_src | split: 'vimeo.com/' | last | split: '?' | first %}
+              <iframe src="https://player.vimeo.com/video/{{ video_id }}" 
+                      frameborder="0" allowfullscreen
+                      title="{{ item.focus.alt | default: item.body.title }}"></iframe>
+              
+            {% elsif video_type == 'loom' %}
+              <iframe src="{{ focus_src }}" 
+                      frameborder="0" allowfullscreen
+                      title="{{ item.focus.alt | default: item.body.title }}"></iframe>
+              
+            {% elsif video_type == 'direct' %}
+              <video controls>
+                <source src="{{ focus_src }}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% endif %}
+            
+            {% if item.focus.caption %}
+              <p class="video-caption">{{ item.focus.caption }}</p>
+            {% endif %}
+          </div>
+        {% else %}
+          <!-- Render image (existing behavior) -->
+          <div class="project-image">
+            <img src="{{ focus_src }}" alt="{{ item.focus.alt | default: item.body.title }}" />
+            {% if item.focus.caption %}
+              <p class="image-caption">{{ item.focus.caption }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %} 

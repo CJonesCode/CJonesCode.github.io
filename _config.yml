@@ -1,0 +1,52 @@
+# Site settings
+title: Casey Jones
+description: Architecture and implementation focused engineer with emphasis on security and maintainability
+baseurl: ""
+url: "https://cjonescode.github.io"
+
+# Personal info
+author:
+  name: Casey Jones
+  title: GauntletAI Fellow (Alchemist division)
+  bio: An architecture and implementation focused engineer, with emphasis on security and maintainability. Interests in Aerospace, digital and physical automation, defense, OSINT, reverse engineering, and video games.
+  email: 
+  github: CJonesCode
+  linkedin: https://www.linkedin.com/in/cjonescode/
+  twitter: https://x.com/CJonesCode
+
+# Skills
+skills:
+  - Python
+  - C#
+  - AWS
+  - LangGraph
+  - DynamoDB
+  - Java
+  - Lua
+  - SQL
+
+# Education
+education:
+  - name: Bloomtech Backend Development Program
+    description: In association with Amazon Technical Academy
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Sass
+sass:
+  style: compressed 

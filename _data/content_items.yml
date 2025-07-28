@@ -1,0 +1,90 @@
+# Manual Content Items - Converted from current projects
+- id: "bugit"
+  source: "manual"
+  focus:
+    src: "https://www.loom.com/embed/46d6927ec29847fd9778f568b4c9337b"
+    alt: "BugIt CLI Preview"
+  body:
+    title: "BugIt CLI"
+    description: "A CLI tool that transforms unstructured bug reports into structured JSON files using AI. Features integration with OpenAI API, atomic file operations, and MCP server integration. Designed for CLI scriptability with POSIX exit codes, JSON output, and styling for seamless development workflow integration."
+    technologies: ["Python", "MCP"]
+    links:
+      demo: ""
+      github: "https://github.com/CJonesCode/BugIt"
+  metadata:
+    # tags removed; technologies now used for tagging
+    order: 1
+    featured: true
+    created_at: "2024-01-01"
+
+- id: "forked-fates"
+  source: "manual"
+  focus:
+    src: "https://www.loom.com/embed/7063084b39fa4078806e5a0da146f291"
+    alt: "Forked Fates Preview"
+  body:
+    title: "Forked Fates"
+    description: "A mini-game based multiplayer game developed entirely in GDScript using the Godot Engine. Features branching paths, physics based character interactions, and player choice-driven gameplay mechanics."
+    technologies: ["Godot Engine", "Steamworks"]
+    links:
+      demo: ""
+      github: "https://github.com/CJonesCode/Forked_Fates"
+  metadata:
+    # tags removed; technologies now used for tagging
+    order: 2
+    featured: true
+    created_at: "2024-01-02"
+
+- id: "ship-of-thesis"
+  source: "manual"
+  focus:
+    src: "https://raw.githubusercontent.com/CJonesCode/grammar-7m/main/public/ship_of_thesis_icon.png"
+    alt: "Ship of Thesis Preview"
+  body:
+    title: "Ship of Thesis"
+    description: "AI- assisted editing with instant grammar, spelling, and style feedback for graduate students writing thesis chapters. Features Harper.js offline grammar checking, Supabase authentication with row-level security, autosave functionality, versioning, and readability analytics. Built with TypeScript, Tailwind, and shadcn/ui for a modern, accessible interface."
+    technologies: ["Next.js", "TypeScript", "Supabase", "Tailwind"]
+    links:
+      demo: ""
+      github: "https://github.com/CJonesCode/grammar-7m"
+  metadata:
+    # tags removed; technologies now used for tagging
+    order: 3
+    featured: true
+    created_at: "2024-01-03"
+
+- id: "themarketindex"
+  source: "manual"
+  focus:
+    src: "https://raw.githubusercontent.com/CJonesCode/TheMarketIndex/main/assets/images/logo.png"
+    alt: "TheMarketIndex Preview"
+  body:
+    title: "TheMarketIndex"
+    description: "A mobile-only social investing platform built with React Native (Expo) and Firebase for sharing ephemeral stock market tips, charts, and video analysis. Features 24-hour disappearing content, signal broadcasting to friends, real-time Firebase Storage integration, push notifications, and automatic cleanup systems."
+    technologies: ["React Native", "Expo", "Firebase", "TypeScript"]
+    links:
+      demo: ""
+      github: "https://github.com/CJonesCode/TheMarketIndex"
+  metadata:
+    # tags removed; technologies now used for tagging
+    order: 4
+    featured: true
+    created_at: "2024-01-04"
+
+- id: "travelagentic"
+  source: "manual"
+  focus:
+    src: "https://www.loom.com/embed/0617e0bff50c43a8ad9cd505c4c23fe2"
+    alt: "TravelAgentic Preview"
+  body:
+    title: "TravelAgentic"
+    description: "An AI-powered travel planning application that automates the entire trip booking process from search to itinerary generation. Features intelligent user intake, simultaneous API searches for flights/hotels/activities, comprehensive 5-layer fallback system with browser automation, and personalized PDF itinerary generation. Built with Next.js 15, LangGraph AI orchestration, and real-time Amadeus API integration."
+    technologies: ["Next.js", "TypeScript", "LangGraph", "Tailwind", "Supabase", "Docker"]
+    links:
+      demo: ""
+      github: "https://github.com/Gauntlet-AI/TravelAgentic/tree/feature/langgraph-migration"
+  metadata:
+    # tags removed; technologies now used for tagging
+    order: 5
+    featured: true
+    created_at: "2024-01-05" 
